@@ -1,0 +1,50 @@
+/* Schedule.css */
+.schedule-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #f1efe7;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px #0000001a;
+  font-family: "Baloo Thambi 2", system-ui;
+  color: #392a11;
+  text-align: center;
+}
+
+.schedule-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #6a6a44;
+}
+
+.schedule-details {
+  margin-bottom: 2rem;
+}
+
+.schedule-details h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #6a6a44;
+}
+
+.schedule-details p {
+  font-size: 1rem;
+  margin: 0.25rem 0;
+}
+
+.add-to-calendar-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #6a6a44;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: "Baloo Thambi 2", system-ui;
+}
+
+.add-to-calendar-btn:hover {
+  background-color: #392a11;
+}

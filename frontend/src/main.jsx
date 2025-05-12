@@ -5,7 +5,7 @@ import "./index.css";
 import Root from "./routes/root";
 import Schedule from "./routes/schedule";
 import RSVP from "./routes/rsvp";
-import Gifting from "./routes/gifting";
+import Gifts from "./routes/gifts";
 import FAQs from "./routes/faqs";
 import ErrorPage from "./error-page";
 
@@ -26,8 +26,8 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
       },
       {
-        path: "/Gifting",
-        element: <Gifting />,
+        path: "/gifts",
+        element: <Gifts />,
         errorElement: <ErrorPage />,
       },
       {

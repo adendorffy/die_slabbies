@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function Gifting() {
+export default function Gifts() {
   const navigate = useNavigate();
   return (
     <div>

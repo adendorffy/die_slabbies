@@ -19,8 +19,8 @@ body {
   width: 100%;
   background: rgba(106, 106, 68, 0.85); /* Semi-transparent background */
   backdrop-filter: blur(10px); /* Smooth background blur */
-  padding: 0.8rem 2rem;
-  color: dcceb5;
+  padding: 1rem 2rem;
+  color: #dcceb5;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,10 +39,26 @@ body {
   margin: 0;
   cursor: pointer;
   transition: color 0.3s;
+  padding-bottom: 0.5rem;
 }
 
-#nav-bar h1:hover {
+#nav-bar li {
   color: #eeb004; /* Stylish hover effect */
+}
+
+h1 a:hover {
+  color: #eeb004; /* Change color on hover */
+  background-color: rgba(238, 176, 4, 0.1); /* Subtle background change */
+  text-decoration: none; /* No underline on hover */
+}
+
+#nav-bar h1 a {
+  text-decoration: none; /* Remove underline */
+  color: #eeb004; /* Set text color */
+  transition: color 0.3s; /* Smooth color transition */
+  display: inline-block; /* Better alignment */
+  padding: 0.2rem 0.5rem; /* Subtle padding for hover effect */
+  border-radius: 5px; /* Rounded corners on hover */
 }
 
 /* Navbar Links */

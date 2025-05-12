@@ -1,20 +1,44 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./schedule.css"; // Make sure to create this CSS file
+import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./Schedule.css"; // Make sure to create this CSS file
+import supabase from "../supabase";
 
 export default function Schedule() {
-  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [guestList, setGuestList] = useState([]);
   const [isGuest, setIsGuest] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Your guest list (you can add or remove names here)
-  const guestList = [
-    { name: "John", surname: "Doe" },
-    { name: "Jane", surname: "Smith" },
-    { name: "Nel", surname: "Brown" },
-    { name: "Ev", surname: "Johnson" },
-  ];
+  useEffect(() => {
+    const fetchGuestList = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("GuestList")
+          .select("name, surname");
+
+        console.log("Guest List Data:", data); // Debugging line
+
+        if (error) {
+          setError("Failed to load guest list.");
+          toast.error(error);
+        } else {
+          setGuestList(data);
+          setError(null);
+        }
+      } catch (error) {
+        setError("Unexpected error loading guest list.");
+        toast.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGuestList();
+  }, []);
 
   const addToCalendar = (title, description, startTime, endTime) => {
     const url = `https://calendar.google.com/calendar/r/eventedit?text=${encodeURIComponent(
@@ -26,15 +50,26 @@ export default function Schedule() {
   };
 
   const handleCheckGuest = () => {
+    if (loading) {
+      alert("Loading guest list. Please wait.");
+      return;
+    }
+
+    if (error) {
+      alert("There was an error loading the guest list.");
+      return;
+    }
+
     const guest = guestList.find(
       (g) =>
-        g.name.toLowerCase() === name.toLowerCase() &&
-        g.surname.toLowerCase() === surname.toLowerCase()
+        g.name.toLowerCase() === name.trim().toLowerCase() &&
+        g.surname.toLowerCase() === surname.trim().toLowerCase()
     );
+
     if (guest) {
       setIsGuest(true);
     } else {
-      alert("Sorry, you are not on the guest list.");
+      toast.alert("Sorry, you are not on the guest list.");
     }
   };
 
@@ -63,25 +98,29 @@ export default function Schedule() {
       </div>
 
       {/* Guest Check Section */}
-      <div className="guest-check">
-        <h2>Reception Access</h2>
-        <p>Please enter your name and surname to see the reception details:</p>
-        <input
-          type="text"
-          placeholder="First Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Surname"
-          value={surname}
-          onChange={(e) => setSurname(e.target.value)}
-        />
-        <button className="check-guest-btn" onClick={handleCheckGuest}>
-          Check Guest List
-        </button>
-      </div>
+      {!isGuest && (
+        <div className="guest-check">
+          <h2>Reception Access</h2>
+          <p>
+            Please enter your name and surname to see the reception details:
+          </p>
+          <input
+            type="text"
+            placeholder="First Name"
+            value={name}
+            onChange={(e) => setName(e.target.value.trim())}
+          />
+          <input
+            type="text"
+            placeholder="Surname"
+            value={surname}
+            onChange={(e) => setSurname(e.target.value.trim())}
+          />
+          <button className="check-guest-btn" onClick={handleCheckGuest}>
+            Check Guest List
+          </button>
+        </div>
+      )}
 
       {/* Reception Details (only visible if guest is on the list) */}
       {isGuest && (
@@ -105,6 +144,8 @@ export default function Schedule() {
           </button>
         </div>
       )}
+
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 }

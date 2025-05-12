@@ -4,7 +4,9 @@ export default function Root() {
   return (
     <>
       <div id="nav-bar">
-        <h1>nel & ev</h1>
+        <h1>
+          <Link to={`/`}>nel & ev</Link>
+        </h1>
         <nav>
           <ul>
             <li>
@@ -14,7 +16,7 @@ export default function Root() {
               <Link to={`RSVP/`}>RSVP</Link>
             </li>
             <li>
-              <Link to={`gifting/`}>Gifting</Link>
+              <Link to={`gifts/`}>Gifts</Link>
             </li>
             <li>
               <Link to={`FAQs/`}>FAQs</Link>

@@ -5,8 +5,8 @@
   padding: 1rem 2rem;
   background-color: #f1efe7;
   border-radius: 10px;
-  box-shadow: 0 4px 15px #0000001a;
-  font-family: "Baloo Thambi 2", system-ui;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
   color: #392a11;
   text-align: center;
 }
@@ -42,9 +42,42 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: "Baloo Thambi 2", system-ui;
 }
 
 .add-to-calendar-btn:hover {
+  background-color: #392a11;
+}
+
+/* Guest Check Section */
+.guest-check {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #e8e4d9;
+  border-radius: 8px;
+}
+
+.guest-check input {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.check-guest-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #6a6a44;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.check-guest-btn:hover {
   background-color: #392a11;
 }

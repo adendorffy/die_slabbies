@@ -34,7 +34,7 @@ export default function Reception() {
         <div className="invite-image-placeholder">
           {/* Replace the src below with your invite image or file upload logic later */}
           <img
-            src="/images/invite-placeholder.jpg"
+            src="/invite.png"
             alt="Wedding Invite"
             className="invite-image"
           />

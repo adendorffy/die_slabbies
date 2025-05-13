@@ -1,0 +1,48 @@
+.reception-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+  color: #392a11;
+}
+
+.reception-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #6a6a44;
+  text-align: center;
+}
+
+.reception-details p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.invite-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.invite-section h2 {
+  font-size: 1.5rem;
+  color: #6a6a44;
+  margin-bottom: 1rem;
+}
+
+.invite-image-placeholder {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.invite-image {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}

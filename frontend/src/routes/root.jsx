@@ -1,33 +1,43 @@
-import { Outlet, Link } from "react-router-dom";
+import React from "react";
+import { Outlet } from "react-router-dom";
+import "./Root.css";
 
 export default function Root() {
   return (
     <>
       <div id="nav-bar">
-        <h1>
-          <Link to={`/`}>nel & ev</Link>
-        </h1>
-        <nav>
+        <div className="nav-header">
+          <h1>
+            <a href="/home">Nel & Ev</a>
+          </h1>
+          <button
+            className="nav-toggle"
+            onClick={() => {
+              document.querySelector(".nav-links").classList.toggle("open");
+            }}
+          >
+            ☰
+          </button>
+        </div>
+
+        <nav className="nav-links">
           <ul>
             <li>
-              <Link to={`schedule/`}>Schedule</Link>
+              <a href="/schedule">Schedule</a>
             </li>
             <li>
-              <Link to={`RSVP/`}>RSVP</Link>
+              <a href="/rsvp">RSVP</a>
             </li>
             <li>
-              <Link to={`gifts/`}>Gifts</Link>
+              <a href="/gifts">Gifts</a>
             </li>
             <li>
-              <Link to={`FAQs/`}>FAQs</Link>
+              <a href="/faqs">FAQs</a>
             </li>
           </ul>
         </nav>
       </div>
-
-      <div id="content"></div>
-
-      <div id="detail">
+      <div>
         <Outlet />
       </div>
     </>

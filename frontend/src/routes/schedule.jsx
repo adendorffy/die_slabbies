@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+
 import "./Schedule.css"; // Make sure to create this CSS file
 import supabase from "../supabase";
 
@@ -72,6 +74,7 @@ export default function Schedule() {
       toast.alert("Sorry, you are not on the guest list.");
     }
   };
+  const navigate = useNavigate();
 
   return (
     <div className="schedule-container">
@@ -141,6 +144,12 @@ export default function Schedule() {
             }
           >
             Add to Calendar
+          </button>
+          <button
+            className="reception-info-btn"
+            onClick={() => navigate("/reception")}
+          >
+            Reception Info
           </button>
         </div>
       )}

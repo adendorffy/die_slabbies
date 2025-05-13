@@ -1,45 +1,100 @@
 /* RSVP.css */
 .rsvp-container {
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 1rem 2rem;
-    background-color: #f1efe7;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    font-family: "Poppins", sans-serif;
-    text-align: center;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #f1efe7;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.rsvp-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #6a6a44;
+}
+
+.rsvp-container input,
+.rsvp-container select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.check-guest-btn,
+.submit-btn {
+  background-color: #6a6a44;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+}
+
+.check-guest-btn:hover,
+.submit-btn:hover {
+  background-color: #392a11;
+}
+
+.rsvp-submitted {
+  background-color: #e8e4d9;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+/* RSVP List Styling */
+.rsvp-list {
+  margin-top: 1rem;
+  padding: 0;
+}
+
+.rsvp-guest {
+  background-color: #e8e4d9;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rsvp-guest p {
+  margin: 0;
+  font-size: 1rem;
+  color: #392a11;
+}
+/* Spinner Styling */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #6a6a44;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .rsvp-container h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #6a6a44;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .rsvp-container input,
-  .rsvp-container select {
-    display: block;
-    width: 100%;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .check-guest-btn,
-  .submit-btn {
-    background-color: #6a6a44;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: background-color 0.3s;
-  }
-  
-  .check-guest-btn:hover,
-  .submit-btn:hover {
-    background-color:
-  
+}

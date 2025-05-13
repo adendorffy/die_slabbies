@@ -14,13 +14,17 @@ export default function RSVP() {
   const [guestId, setGuestId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
+  const [rsvpList, setRsvpList] = useState([]); // List of guests who have RSVPd
 
-  // Your guest list (you can add or remove names here)
+  // Fetching Guest List from Supabase
   useEffect(() => {
     const fetchGuestList = async () => {
       try {
-        const { data, error } = await supabase.from("GuestList").select();
-        console.log("Guest List Data:", data); // Debugging line
+        const { data, error } = await supabase
+          .from("GuestList")
+          .select("ID, name, surname, attending, dietary");
+        console.log("Guest List Data:", data);
 
         if (error) {
           setError("Failed to load guest list.");
@@ -28,6 +32,10 @@ export default function RSVP() {
         } else {
           setGuestList(data);
           setError(null);
+
+          // Extract guests who have RSVPd
+          const rsvpdGuests = data.filter((g) => g.attending);
+          setRsvpList(rsvpdGuests);
         }
       } catch (error) {
         setError("Unexpected error loading guest list.");
@@ -40,6 +48,7 @@ export default function RSVP() {
     fetchGuestList();
   }, []);
 
+  // Check if guest is on the list and if they have RSVPd
   const handleCheckGuest = () => {
     if (loading) {
       toast.info("Loading guest list. Please wait.");
@@ -60,12 +69,20 @@ export default function RSVP() {
     if (guest) {
       setIsGuest(true);
       setGuestId(guest.ID);
-      toast.success(`Welcome ${guest.name} ${guest.surname}!`);
+
+      // Check if they have already RSVPd
+      if (guest.attending) {
+        setRsvpSubmitted(true);
+        toast.success("You have already RSVPd!");
+      } else {
+        toast.success(`Welcome ${guest.name} ${guest.surname}!`);
+      }
     } else {
       toast.error("Sorry, you are not on the guest list.");
     }
   };
 
+  // Handle RSVP Submission
   const handleRSVP = async (e) => {
     e.preventDefault();
 
@@ -75,7 +92,6 @@ export default function RSVP() {
     }
 
     try {
-      // Corrected table name
       const { error } = await supabase
         .from("GuestList")
         .update({
@@ -91,15 +107,32 @@ export default function RSVP() {
       }
 
       toast.success("RSVP Submitted Successfully!");
-      setName("");
-      setSurname("");
-      setAttending("");
-      setDietary("");
-      setIsGuest(false);
+      setRsvpSubmitted(true);
+
+      // Add the guest to the RSVPd list
+      const updatedGuest = {
+        name: name.trim(),
+        surname: surname.trim(),
+        attending,
+        dietary: dietary.trim() ? dietary.trim() : null,
+      };
+
+      setRsvpList((prev) => [...prev, updatedGuest]);
     } catch (error) {
       toast.error("There was an error submitting your RSVP. Please try again.");
       console.error("Unexpected Error:", error);
     }
+  };
+
+  // Reset Form to RSVP for Another Guest
+  const handleRSVPForAnother = () => {
+    setName("");
+    setSurname("");
+    setAttending("");
+    setDietary("");
+    setIsGuest(false);
+    setRsvpSubmitted(false);
+    setGuestId(null);
   };
 
   return (
@@ -121,7 +154,16 @@ export default function RSVP() {
         Check Guest List
       </button>
 
-      {isGuest && (
+      {isGuest && rsvpSubmitted && (
+        <div className="rsvp-submitted">
+          <h2>✅ You have already RSVPd!</h2>
+          <button className="check-guest-btn" onClick={handleRSVPForAnother}>
+            RSVP for Another Guest
+          </button>
+        </div>
+      )}
+
+      {isGuest && !rsvpSubmitted && (
         <form onSubmit={handleRSVP}>
           <h2>RSVP Details</h2>
           <label>
@@ -153,7 +195,33 @@ export default function RSVP() {
           </button>
         </form>
       )}
-      <ToastContainer position="top-center" autoClose={3000} />
+
+      <h2>Guests Who Have RSVPd</h2>
+      {loading && (
+        <div className="spinner-container">
+          <div className="spinner"></div>
+        </div>
+      )}
+
+      {rsvpList.length > 0 ? (
+        <div className="rsvp-list">
+          {rsvpList.map((guest, index) => (
+            <div key={index} className="rsvp-guest">
+              <p>
+                <strong>
+                  {guest.name} {guest.surname}
+                </strong>{" "}
+                - {guest.attending ? "yes" : "no"}
+                {guest.dietary ? `(${guest.dietary})` : ""}
+              </p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        !loading && <p>No one has RSVPd yet.</p>
+      )}
+
+      <ToastContainer position="top-center" autoClose={false} />
     </div>
   );
 }

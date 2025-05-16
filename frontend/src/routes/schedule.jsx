@@ -82,9 +82,9 @@ export default function Schedule() {
 
       <div className="schedule-details">
         <h2>Ceremony</h2>
-        <p>Date: 13 December 2025</p>
-        <p>Time: 3:00 PM - 4:00 PM</p>
-        <p>Location: Beautiful Venue, Your City</p>
+        <p>13 December 2025</p>
+        <p>2:00PM - 4:00PM</p>
+        <p>Christ Church Stellenbosch</p>
         <button
           className="add-to-calendar-btn"
           onClick={() =>
@@ -129,8 +129,8 @@ export default function Schedule() {
       {isGuest && (
         <div className="schedule-details">
           <h2>Reception</h2>
-          <p>Date: 13 December 2025</p>
-          <p>Time: 6:00 PM - 11:00 PM</p>
+          <p>13 December 2025</p>
+          <p>6:00 PM - 11:00 PM</p>
           <p>Location: Beautiful Venue, Your City</p>
           <button
             className="add-to-calendar-btn"

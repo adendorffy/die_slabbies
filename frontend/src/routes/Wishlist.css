@@ -1,10 +1,10 @@
 .wishlist-container {
   max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 1rem;
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Nanum Myeongjo", serif;
   color: #6a6a44;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .wishlist-item a:hover {
-  color: #eeb004;
+  color: #392a11;
   background-color: rgba(238, 176, 4, 0.1);
   text-decoration: none;
 }
@@ -68,6 +68,7 @@
   border: none;
   padding: 0.5rem;
   border-radius: 5px;
+  font-family: "Nanum Myeongjo", serif;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -76,7 +77,7 @@
 }
 
 .purchase-btn:hover {
-  background-color: #eeb004;
+  background-color: #392a11;
 }
 
 /* Purchased items on the right */
@@ -118,7 +119,7 @@
 }
 
 .purchased-items a:hover {
-  color: #eeb004;
+  color: #392a11;
   background-color: rgba(238, 176, 4, 0.1);
   text-decoration: none;
 }
@@ -134,6 +135,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
   margin-left: 1rem;
+  font-family: "Nanum Myeongjo", serif;
   margin-top: 0.5rem;
 }
 

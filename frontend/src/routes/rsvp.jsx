@@ -196,7 +196,7 @@ export default function RSVP() {
         </form>
       )}
 
-      <h2>Guests Who Have RSVPd</h2>
+      <h1>Guests Who Have RSVPd</h1>
       {loading && (
         <div className="spinner-container">
           <div className="spinner"></div>
@@ -212,7 +212,7 @@ export default function RSVP() {
                   {guest.name} {guest.surname}
                 </strong>{" "}
                 - {guest.attending ? "yes" : "no"}
-                {guest.dietary ? `(${guest.dietary})` : ""}
+                {guest.dietary ? ` (${guest.dietary})` : ""}
               </p>
             </div>
           ))}

@@ -8,7 +8,7 @@ export default function Root() {
       <div id="nav-bar">
         <div className="nav-header">
           <h1>
-            <a href="/">Nel & Ev</a>
+            <a href="/">nel & ev</a>
           </h1>
           <button
             className="nav-toggle"
